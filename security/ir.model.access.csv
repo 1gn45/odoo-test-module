@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_testas_testas,testas.testas,model_testas_testas,base.group_user,1,1,1,1
+access_car_car,Access for car,model_car_car,base.group_user,1,1,1,1
+access_parking_parking,Access for parking,model_parking_parking,base.group_user,1,1,1,1
