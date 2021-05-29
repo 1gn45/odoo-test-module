@@ -7,8 +7,10 @@
         <field name="arch" type="xml">
             <form>
                 <group>
-                    <field name="name"/>
-                    <field name="car_ids"/>
+                    <group>
+                        <field name="name"/>
+                        <field name="car_ids"/>
+                    </group>
                 </group>
 
             </form>
@@ -34,5 +36,5 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem id="parking_menu" name="Parking" sequence="7" parent="car_menu" action="parking_action"/>
+    <menuitem id="parking_menu" name="Parking" sequence="1" parent="car_menu" action="parking_action"/>
 </odoo>
