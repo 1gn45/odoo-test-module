@@ -29,6 +29,7 @@
         'views/templates.xml',
         'views/car.xml',
         'views/parking.xml',
+        'views/res_partner_inherit.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

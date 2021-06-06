@@ -9,17 +9,19 @@
                 <sheet>
                     <header>
                         <field name="status" widget="statusbar"/>
-                        <button name="set_car_to_used" string="Set Car Used" type="object" class="oe_highlight" attrs="{'invisible':[('status', '!=', '`used')]}"/>
+                        <button name="set_car_to_used" string="Set Car Used" type="object" class="oe_highlight" />
                         <button name="set_car_to_sold" string="Set Car Sold" type="object" class="oe_highlight" />
                     </header>
                 </sheet>
                 <group>
-                    <field name="name"/>
-                    <field name="horse_power"/>
-                    <field name="door_number"/>
-                    <field name="driver_id"/>
-                    <field name="feature_ids" widget="many2many_tags"/>
-                    <field name="total_speed"/>
+                    <group>
+                        <field name="name"/>
+                        <field name="horse_power"/>
+                        <field name="door_number" attrs="{'invisible':[('horse_power', '=', 5)]}"/>
+                        <field name="driver_id"/>
+                        <field name="feature_ids" widget="many2many_tags"/>
+                        <field name="total_speed"/>
+                    </group>
                 </group>
 
             </form>

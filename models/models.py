@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields
+from odoo import models, fields, api
+from openerp.exceptions import ValidationError
 
 
 class Car(models.Model):
@@ -16,6 +17,34 @@ class Car(models.Model):
     total_speed = fields.Integer(string="Total speed", compute="get_total_speed")
 
     status = fields.Selection([('new', 'New'), ('used', 'Used'), ('sold', 'Sold')], string='Status', default="new")
+
+#### "create table" original funkcijos pakeitimas galima apdirbti inputus ir apdirbtus padeti i duombaze
+####butinas dekoratorius ir butinas pavadinimas create nes jis pakeicia orginalia fnc
+    @api.model
+    def create(self, vals):
+        print("----------CREATE FUNKCIJA---------------")
+        vals['name']+=" papildomas tekstas reiksmeje i duombaze"
+        if vals['horse_power']>10:
+            raise ValidationError("The horse power can't be greater than 10")
+        result=super(Car, self).create(vals)
+        return result
+#### Overwritinam funkcija write, (kai spaudziam edit.) butina write pavadinimas
+    def write(self, vals):
+        print("----------WRITE FUNKCIJA---------------")
+        if vals['horse_power']>10:
+            raise ValidationError("The horse power can't be greater than 10")
+        result = super(Car, self).write(vals)
+        return result
+    ####Overwriting delete function
+    def unlink(self):
+        print("---------OVERWRITING DELETE FNC-----------")
+        ##loopinam per pasirinktus istrinti elementus
+        for a in self:
+            if a.horse_power==8:
+                raise ValidationError("Remove not possible with horse power=8")
+        return super(Car, self).unlink(vals)
+
+
 
     def set_car_to_used(self):
         print('set_car_to_used')
